@@ -1,0 +1,425 @@
+{% comment %}
+  VANTA custom product page — Dawn-compatible section.
+  Add this section through templates/product.vanta.json.
+{% endcomment %}
+
+<section id="VantaProduct-{{ section.id }}" class="vanta-product">
+  <div class="vanta-product__wrap page-width">
+    <div class="vanta-product__gallery">
+      <div class="vanta-product__main-image">
+        {% if product.featured_media %}
+          {{ product.featured_media | image_url: width: 1800 | image_tag:
+            class: 'vanta-product__image',
+            loading: 'eager',
+            widths: '600, 900, 1200, 1500, 1800',
+            alt: product.featured_media.alt | default: product.title
+          }}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'vanta-product__placeholder' }}
+        {% endif %}
+        <span class="vanta-product__index">VANTA / 001</span>
+      </div>
+
+      {% if product.media.size > 1 %}
+        <div class="vanta-product__thumbs" aria-label="Product images">
+          {% for media in product.media %}
+            {% if media.media_type == 'image' %}
+              <button
+                class="vanta-product__thumb{% if forloop.first %} is-active{% endif %}"
+                type="button"
+                data-vanta-thumb
+                data-image="{{ media | image_url: width: 1800 }}"
+                aria-label="View image {{ forloop.index }}"
+                aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+              >
+                {{ media | image_url: width: 240 | image_tag: loading: 'lazy', alt: media.alt | default: product.title }}
+              </button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="vanta-product__info">
+      <p class="vanta-product__eyebrow">VANTA / THE FIRST DROP</p>
+      <h1 class="vanta-product__title">{{ product.title | escape }}</h1>
+      {% if section.settings.subtitle != blank %}
+        <p class="vanta-product__subtitle">{{ section.settings.subtitle | escape }}</p>
+      {% endif %}
+
+      <div class="vanta-product__price" id="VantaPrice-{{ section.id }}">
+        <span class="vanta-product__price-current">{{ product.selected_or_first_available_variant.price | money }}</span>
+        {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+          <s class="vanta-product__price-compare">{{ product.selected_or_first_available_variant.compare_at_price | money }}</s>
+          <span class="vanta-product__sale">SALE</span>
+        {% endif %}
+      </div>
+
+      {% assign product_form_id = 'VantaProductForm-' | append: section.id %}
+      
+      {% form 'product', product, id: product_form_id, class: 'vanta-product__form' %}
+        {% unless product.has_only_default_variant %}
+          <label class="vanta-product__label" for="VantaVariant-{{ section.id }}">SELECT OPTION</label>
+          <select id="VantaVariant-{{ section.id }}" name="id" class="vanta-product__select">
+            {% for variant in product.variants %}
+              <option
+                value="{{ variant.id }}"
+                {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+                {% unless variant.available %}disabled{% endunless %}
+              >
+                {{ variant.title }}{% unless variant.available %} — SOLD OUT{% endunless %}
+              </option>
+            {% endfor %}
+          </select>
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {% endunless %}
+
+        <div class="vanta-product__quantity-row">
+          <label class="vanta-product__label" for="VantaQuantity-{{ section.id }}">QUANTITY</label>
+          <div class="vanta-product__quantity">
+            <button type="button" data-quantity-minus aria-label="Decrease quantity">−</button>
+            <input id="VantaQuantity-{{ section.id }}" name="quantity" type="number" min="1" value="1" inputmode="numeric">
+            <button type="button" data-quantity-plus aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          name="add"
+          class="vanta-product__add"
+          {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+        >
+          <span>{% if product.selected_or_first_available_variant.available %}ADD TO CART{% else %}SOLD OUT{% endif %}</span>
+          <span aria-hidden="true">↗</span>
+        </button>
+        {{ form | payment_button }}
+      {% endform %}
+
+      <div class="vanta-product__details">
+        <details open>
+          <summary>THE DETAILS <span>+</span></summary>
+          <div class="vanta-product__description rte">
+            {% if product.description != blank %}
+              {{ product.description }}
+            {% else %}
+              <p>{{ section.settings.fallback_description }}</p>
+            {% endif %}
+          </div>
+        </details>
+        <details>
+          <summary>SHIPPING & RETURNS <span>+</span></summary>
+          <div class="vanta-product__description">
+            <p>{{ section.settings.shipping_text }}</p>
+          </div>
+        </details>
+      </div>
+
+      <p class="vanta-product__note">NOT MADE TO FIT IN. BUILT FOR THE DIFFERENT.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  #VantaProduct-{{ section.id }} {
+    --vanta-lime: #b7ff32;
+    --vanta-black: #090909;
+    --vanta-muted: #a3a3a3;
+    background: var(--vanta-black);
+    color: #f5f5f5;
+    padding: clamp(34px, 5vw, 76px) 0;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+    gap: clamp(30px, 5vw, 82px);
+    align-items: start;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__main-image {
+    position: relative;
+    overflow: hidden;
+    background: #171717;
+    aspect-ratio: 4 / 5;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__image,
+  #VantaProduct-{{ section.id }} .vanta-product__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__index {
+    position: absolute;
+    left: 18px;
+    bottom: 16px;
+    font-size: 10px;
+    letter-spacing: .2em;
+    color: #fff;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__thumbs {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__thumb {
+    border: 1px solid #333;
+    background: #171717;
+    padding: 0;
+    cursor: pointer;
+    opacity: .62;
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__thumb.is-active,
+  #VantaProduct-{{ section.id }} .vanta-product__thumb:hover {
+    border-color: var(--vanta-lime);
+    opacity: 1;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__thumb img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__info {
+    position: sticky;
+    top: 36px;
+    padding-top: 12px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__eyebrow {
+    color: var(--vanta-lime);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .28em;
+    margin: 0 0 22px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__title {
+    color: #fff;
+    font-size: clamp(34px, 4vw, 62px);
+    line-height: .98;
+    letter-spacing: -.055em;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__subtitle {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0 0 25px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__price {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 0 26px;
+    border-bottom: 1px solid #303030;
+    margin-bottom: 25px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__price-current {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__price-compare {
+    color: #858585;
+    font-size: 14px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__sale {
+    background: var(--vanta-lime);
+    color: #080808;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .12em;
+    padding: 6px 8px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__label {
+    display: block;
+    color: #c7c7c7;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    margin-bottom: 10px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 14px;
+    color: #fff;
+    background: #141414;
+    border: 1px solid #494949;
+    border-radius: 0;
+    margin-bottom: 22px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__quantity-row {
+    margin-bottom: 22px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__quantity {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #494949;
+    min-height: 44px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__quantity button,
+  #VantaProduct-{{ section.id }} .vanta-product__quantity input {
+    color: #fff;
+    background: transparent;
+    border: 0;
+    text-align: center;
+    width: 44px;
+    min-height: 42px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__quantity button {
+    cursor: pointer;
+    font-size: 20px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__quantity input {
+    width: 48px;
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__quantity input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__add {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 58px;
+    padding: 0 20px;
+    background: var(--vanta-lime);
+    color: #080808;
+    border: 1px solid var(--vanta-lime);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .18em;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__add:hover {
+    background: transparent;
+    color: var(--vanta-lime);
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__add:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+  }
+  #VantaProduct-{{ section.id }} .shopify-payment-button {
+    margin-top: 12px;
+  }
+  #VantaProduct-{{ section.id }} .shopify-payment-button__button {
+    border-radius: 0 !important;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__details {
+    border-top: 1px solid #303030;
+    margin-top: 30px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__details details {
+    border-bottom: 1px solid #303030;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__details summary {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 0;
+    cursor: pointer;
+    list-style: none;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .17em;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__details summary::-webkit-details-marker {
+    display: none;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__description {
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.8;
+    padding: 0 0 18px;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__description p {
+    margin-top: 0;
+  }
+  #VantaProduct-{{ section.id }} .vanta-product__note {
+    color: var(--vanta-lime);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    margin-top: 28px;
+  }
+  @media screen and (max-width: 749px) {
+    #VantaProduct-{{ section.id }} .vanta-product__wrap {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    #VantaProduct-{{ section.id }} .vanta-product__info {
+      position: static;
+      padding-top: 0;
+    }
+    #VantaProduct-{{ section.id }} .vanta-product__title {
+      font-size: clamp(34px, 10vw, 48px);
+    }
+    #VantaProduct-{{ section.id }} .vanta-product__thumbs {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const root = document.getElementById('VantaProduct-{{ section.id }}');
+    if (!root || root.dataset.vantaReady === 'true') return;
+    root.dataset.vantaReady = 'true';
+
+    const mainImage = root.querySelector('.vanta-product__image');
+    root.querySelectorAll('[data-vanta-thumb]').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (mainImage && button.dataset.image) mainImage.src = button.dataset.image;
+        root.querySelectorAll('[data-vanta-thumb]').forEach((thumb) => {
+          thumb.classList.remove('is-active');
+          thumb.setAttribute('aria-pressed', 'false');
+        });
+        button.classList.add('is-active');
+        button.setAttribute('aria-pressed', 'true');
+      });
+    });
+
+    const quantity = root.querySelector('input[name="quantity"]');
+    root.querySelector('[data-quantity-minus]')?.addEventListener('click', () => {
+      if (quantity) quantity.value = Math.max(1, (parseInt(quantity.value, 10) || 1) - 1);
+    });
+    root.querySelector('[data-quantity-plus]')?.addEventListener('click', () => {
+      if (quantity) quantity.value = (parseInt(quantity.value, 10) || 1) + 1;
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "VANTA product page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Short product subtitle",
+      "default": "Utility built different. Designed to move beyond the ordinary."
+    },
+    {
+      "type": "richtext",
+      "id": "fallback_description",
+      "label": "Fallback description",
+      "default": "<p>Built for the different. A considered streetwear essential with an oversized fit and everyday utility.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "shipping_text",
+      "label": "Shipping and returns text",
+      "default": "<p>Add your actual shipping timelines and return policy here before launch.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "VANTA product page"
+    }
+  ]
+}
+{% endschema %}

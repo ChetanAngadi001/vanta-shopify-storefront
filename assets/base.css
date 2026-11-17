@@ -3635,3 +3635,136 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+
+/* =========================================
+   VANTA — FULL WIDTH MARQUEE ANNOUNCEMENT
+========================================= */
+
+.announcement-bar-section,
+.utility-bar,
+.utility-bar__grid {
+  background: #B7FF32 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.announcement-bar-section {
+  overflow: hidden !important;
+}
+
+.announcement-bar,
+.announcement-bar__announcement {
+  background: #B7FF32 !important;
+  color: #050505 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+}
+
+.announcement-bar__announcement {
+  width: 100% !important;
+  justify-content: flex-start !important;
+}
+
+.announcement-bar__message {
+  display: block !important;
+  flex: 0 0 auto !important;
+  width: max-content !important;
+  max-width: none !important;
+  white-space: nowrap !important;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+
+  color: #050505 !important;
+  font-size: 16px !important;
+  font-weight: 1000 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1 !important;
+  text-transform: uppercase;
+
+  animation: vanta-marquee 16s linear infinite !important;
+}
+
+.announcement-bar__message::after {
+  content: "  •  VANTA DROP 001  •  BUILT FOR THE DIFFERENT  •  WEAR DIFFERENT  •  FREE SHIPPING ABOVE ₹999  •  ";
+  padding-left: 24px;
+}
+
+@keyframes vanta-marquee {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 749px) {
+  .announcement-bar__message {
+    font-size: 13px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .announcement-bar__message {
+    animation: none !important;
+  }
+}
+
+
+
+/* =====================================
+   VANTA — PREMIUM HEADER NAVIGATION
+===================================== */
+
+.header-wrapper {
+  background: #080808 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.header {
+  min-height: 82px;
+}
+
+.header__menu-item {
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  transition: color 0.25s ease;
+}
+
+.header__menu-item:hover,
+.header__menu-item:hover span {
+  color: #B7FF32 !important;
+}
+
+.header__menu-item span {
+  text-decoration: none !important;
+}
+
+.header__icon {
+  color: #ffffff !important;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.header__icon:hover {
+  color: #B7FF32 !important;
+  transform: translateY(-2px);
+}
+
+.header__heading-logo {
+  transition: transform 0.3s ease;
+}
+
+.header__heading-logo:hover {
+  transform: scale(1.04);
+}
+
+/* Mobile navigation */
+@media screen and (max-width: 989px) {
+  .header {
+    min-height: 68px;
+  }
+}

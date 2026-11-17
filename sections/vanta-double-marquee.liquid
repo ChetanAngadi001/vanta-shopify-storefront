@@ -1,0 +1,145 @@
+
+<section class="vanta-marquee-section" id="vanta-marquee-{{ section.id }}">
+  <div class="vanta-marquee-wrap">
+
+    <!-- FIRST STRIP: MOVES LEFT -->
+    <div class="vanta-marquee-row vanta-marquee-row--one">
+      <div class="vanta-marquee-track">
+        {% for copy in (1..2) %}
+          <div class="vanta-marquee-group">
+            <span>NOT MADE TO FIT IN</span>
+            <span class="vanta-marquee-dot">✳</span>
+            <span>WEAR DIFFERENT</span>
+            <span class="vanta-marquee-dot">✳</span>
+            <span>BUILT FOR THE DIFFERENT</span>
+            <span class="vanta-marquee-dot">✳</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- SECOND STRIP: MOVES RIGHT -->
+    <div class="vanta-marquee-row vanta-marquee-row--two">
+      <div class="vanta-marquee-track">
+        {% for copy in (1..2) %}
+          <div class="vanta-marquee-group">
+            <span>VANTA DROP 001</span>
+            <span class="vanta-marquee-dot">✳</span>
+            <span>STAY ORIGINAL</span>
+            <span class="vanta-marquee-dot">✳</span>
+            <span>NEVER BLEND IN</span>
+            <span class="vanta-marquee-dot">✳</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #vanta-marquee-{{ section.id }} {
+    --vanta-lime: #B7FF32;
+    background: #050505;
+    padding: 65px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #vanta-marquee-{{ section.id }} .vanta-marquee-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    transform: rotate(-2deg) scale(1.04);
+  }
+
+  #vanta-marquee-{{ section.id }} .vanta-marquee-row {
+    overflow: hidden;
+    width: 100%;
+    background: var(--vanta-lime);
+    color: #050505;
+    padding: 9px 0;
+  }
+
+  #vanta-marquee-{{ section.id }} .vanta-marquee-track {
+    display: flex;
+    width: max-content;
+  }
+
+  #vanta-marquee-{{ section.id }} .vanta-marquee-group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 28px;
+    padding-right: 28px;
+    white-space: nowrap;
+  }
+
+  #vanta-marquee-{{ section.id }} .vanta-marquee-group span {
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(30px, 5vw, 72px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+  }
+
+  #vanta-marquee-{{ section.id }} .vanta-marquee-dot {
+    font-size: clamp(24px, 3vw, 42px);
+  }
+
+  #vanta-marquee-{{ section.id }} .vanta-marquee-row--one .vanta-marquee-track {
+    animation: vanta-marquee-left 25s linear infinite;
+  }
+
+  #vanta-marquee-{{ section.id }} .vanta-marquee-row--two .vanta-marquee-track {
+    animation: vanta-marquee-right 25s linear infinite;
+  }
+
+  #vanta-marquee-{{ section.id }} .vanta-marquee-wrap:hover .vanta-marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes vanta-marquee-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes vanta-marquee-right {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+
+  @media (max-width: 749px) {
+    #vanta-marquee-{{ section.id }} {
+      padding: 42px 0;
+    }
+
+    #vanta-marquee-{{ section.id }} .vanta-marquee-wrap {
+      gap: 12px;
+    }
+
+    #vanta-marquee-{{ section.id }} .vanta-marquee-group {
+      gap: 18px;
+      padding-right: 18px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #vanta-marquee-{{ section.id }} .vanta-marquee-track {
+      animation: none !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "VANTA Double Marquee",
+  "settings": [],
+  "presets": [
+    {
+      "name": "VANTA Double Marquee"
+    }
+  ]
+}
+{% endschema %}

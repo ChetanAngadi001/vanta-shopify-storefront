@@ -1,0 +1,468 @@
+
+{% comment %}
+  VANTA — Custom Streetwear Footer
+  Black / White / Neon Lime
+{% endcomment %}
+
+<footer id="VantaFooter-{{ section.id }}" class="vanta-footer">
+
+  <div class="vanta-footer__main">
+
+    <!-- BRAND -->
+    <div class="vanta-footer__brand">
+      <a href="{{ routes.root_url }}" class="vanta-footer__logo">
+        VANTA<span>®</span>
+      </a>
+
+      <p class="vanta-footer__tagline">
+        NOT MADE TO FIT IN.<br>
+        <strong>BUILT TO STAND APART.</strong>
+      </p>
+
+      <p class="vanta-footer__description">
+        Wear your difference. Express your identity.
+        Built for those who refuse to blend in.
+      </p>
+
+      <div class="vanta-footer__socials">
+
+        {% if section.settings.instagram_url != blank %}
+          <a href="{{ section.settings.instagram_url }}"
+             target="_blank"
+             rel="noopener noreferrer">
+            INSTAGRAM ↗
+          </a>
+        {% endif %}
+
+        {% if section.settings.facebook_url != blank %}
+          <a href="{{ section.settings.facebook_url }}"
+             target="_blank"
+             rel="noopener noreferrer">
+            FACEBOOK ↗
+          </a>
+        {% endif %}
+
+        {% if section.settings.youtube_url != blank %}
+          <a href="{{ section.settings.youtube_url }}"
+             target="_blank"
+             rel="noopener noreferrer">
+            YOUTUBE ↗
+          </a>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <!-- SHOP LINKS -->
+    <div class="vanta-footer__column">
+      <h3>SHOP</h3>
+
+      <a href="{{ routes.all_products_collection_url }}">ALL PRODUCTS</a>
+      <a href="{{ routes.root_url }}">HOME</a>
+      <a href="{{ pages['the-drop'].url | default: routes.all_products_collection_url }}">THE DROP</a>
+    </div>
+
+    <!-- EXPLORE LINKS -->
+    <div class="vanta-footer__column">
+      <h3>EXPLORE</h3>
+
+      <a href="{{ pages['about'].url | default: routes.root_url }}">ABOUT VANTA</a>
+      <a href="{{ routes.search_url }}">SEARCH</a>
+      <a href="{{ routes.account_url }}">MY ACCOUNT</a>
+    </div>
+
+    <!-- SUPPORT LINKS -->
+    <div class="vanta-footer__column">
+      <h3>INFORMATION</h3>
+
+      {% if shop.policies.privacy_policy %}
+        <a href="{{ shop.policies.privacy_policy.url }}">PRIVACY POLICY</a>
+      {% endif %}
+
+      {% if shop.policies.terms_of_service %}
+        <a href="{{ shop.policies.terms_of_service.url }}">TERMS OF SERVICE</a>
+      {% endif %}
+
+      {% if shop.policies.refund_policy %}
+        <a href="{{ shop.policies.refund_policy.url }}">REFUND POLICY</a>
+      {% endif %}
+
+      {% if shop.policies.shipping_policy %}
+        <a href="{{ shop.policies.shipping_policy.url }}">SHIPPING POLICY</a>
+      {% endif %}
+    </div>
+
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="vanta-footer__newsletter">
+
+    <div class="vanta-footer__newsletter-text">
+      <span>STAY DIFFERENT</span>
+      <h2>GET ON THE LIST.</h2>
+      <p>Get updates on new drops, releases and VANTA news.</p>
+    </div>
+
+    {% form 'customer', class: 'vanta-footer__form' %}
+
+      <input type="hidden" name="contact[tags]" value="newsletter">
+
+      <label class="visually-hidden" for="VantaEmail-{{ section.id }}">
+        Email address
+      </label>
+
+      <input
+        id="VantaEmail-{{ section.id }}"
+        type="email"
+        name="contact[email]"
+        placeholder="ENTER YOUR EMAIL ADDRESS"
+        autocorrect="off"
+        autocapitalize="off"
+        autocomplete="email"
+        required
+      >
+
+      <button type="submit" aria-label="Subscribe to newsletter">
+        JOIN THE DROP <span>↗</span>
+      </button>
+
+      {% if form.posted_successfully? %}
+        <p class="vanta-footer__message">
+          YOU'RE ON THE LIST. STAY DIFFERENT.
+        </p>
+      {% endif %}
+
+      {% if form.errors %}
+        <div class="vanta-footer__message">
+          {{ form.errors | default_errors }}
+        </div>
+      {% endif %}
+
+    {% endform %}
+
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="vanta-footer__bottom">
+
+    <span>
+      © {{ 'now' | date: '%Y' }} VANTA®. ALL RIGHTS RESERVED.
+    </span>
+
+    <span class="vanta-footer__bottom-center">
+      NOT MADE TO FIT IN.
+    </span>
+
+    <a href="{{ routes.root_url }}">
+      BACK TO TOP ↑
+    </a>
+
+  </div>
+
+</footer>
+
+<style>
+
+#VantaFooter-{{ section.id }} {
+  --vanta-black: #050505;
+  --vanta-white: #ffffff;
+  --vanta-grey: #858585;
+  --vanta-lime: #B7FF32;
+
+  background: var(--vanta-black);
+  color: var(--vanta-white);
+  padding: 75px 6% 25px;
+  font-family: inherit;
+}
+
+#VantaFooter-{{ section.id }} * {
+  box-sizing: border-box;
+}
+
+#VantaFooter-{{ section.id }} a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* MAIN GRID */
+
+#VantaFooter-{{ section.id }} .vanta-footer__main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 45px;
+  padding-bottom: 75px;
+}
+
+/* BRAND */
+
+#VantaFooter-{{ section.id }} .vanta-footer__logo {
+  display: inline-block;
+  font-size: 42px;
+  font-weight: 950;
+  letter-spacing: -3px;
+  line-height: 1;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__logo span {
+  color: var(--vanta-lime);
+  font-size: 13px;
+  vertical-align: top;
+  letter-spacing: 0;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__tagline {
+  margin: 25px 0 12px;
+  color: #aaa;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  line-height: 2;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__tagline strong {
+  color: var(--vanta-lime);
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__description {
+  max-width: 300px;
+  color: var(--vanta-grey);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 17px;
+  margin-top: 25px;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__socials a {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: color .2s ease;
+}
+
+/* LINK COLUMNS */
+
+#VantaFooter-{{ section.id }} .vanta-footer__column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__column h3 {
+  color: var(--vanta-lime);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 0 0 8px;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__column a {
+  color: #999;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: color .2s ease;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__column a:hover,
+#VantaFooter-{{ section.id }} .vanta-footer__socials a:hover {
+  color: var(--vanta-lime);
+}
+
+/* NEWSLETTER */
+
+#VantaFooter-{{ section.id }} .vanta-footer__newsletter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 45px;
+  padding: 45px 0;
+  border-top: 1px solid #292929;
+  border-bottom: 1px solid #292929;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__newsletter-text span {
+  color: var(--vanta-lime);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__newsletter-text h2 {
+  color: white;
+  font-size: clamp(25px, 3vw, 38px);
+  font-weight: 900;
+  letter-spacing: -1px;
+  margin: 8px 0;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__newsletter-text p {
+  color: #888;
+  font-size: 12px;
+  margin: 0;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__form {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__form input[type="email"] {
+  flex: 1 1 220px;
+  min-width: 0;
+  height: 50px;
+  padding: 0 15px;
+  background: transparent;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 0;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__form input::placeholder {
+  color: #777;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__form button {
+  height: 50px;
+  padding: 0 20px;
+  background: var(--vanta-lime);
+  color: #050505;
+  border: 1px solid var(--vanta-lime);
+  border-radius: 0;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__form button:hover {
+  background: transparent;
+  color: var(--vanta-lime);
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__form button span {
+  margin-left: 8px;
+  font-size: 16px;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__message {
+  flex-basis: 100%;
+  color: var(--vanta-lime);
+  font-size: 11px;
+}
+
+/* BOTTOM BAR */
+
+#VantaFooter-{{ section.id }} .vanta-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 25px;
+  color: #777;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__bottom-center {
+  color: var(--vanta-lime);
+}
+
+#VantaFooter-{{ section.id }} .vanta-footer__bottom a:hover {
+  color: white;
+}
+
+/* MOBILE */
+
+@media screen and (max-width: 749px) {
+
+  #VantaFooter-{{ section.id }} {
+    padding: 50px 6% 25px;
+  }
+
+  #VantaFooter-{{ section.id }} .vanta-footer__main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 20px;
+    padding-bottom: 45px;
+  }
+
+  #VantaFooter-{{ section.id }} .vanta-footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  #VantaFooter-{{ section.id }} .vanta-footer__logo {
+    font-size: 38px;
+  }
+
+  #VantaFooter-{{ section.id }} .vanta-footer__newsletter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 35px 0;
+  }
+
+  #VantaFooter-{{ section.id }} .vanta-footer__form {
+    max-width: none;
+  }
+
+  #VantaFooter-{{ section.id }} .vanta-footer__form input[type="email"] {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  #VantaFooter-{{ section.id }} .vanta-footer__form button {
+    width: 100%;
+  }
+
+  #VantaFooter-{{ section.id }} .vanta-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    line-height: 1.6;
+  }
+
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "VANTA Custom Footer",
+  "tag": "section",
+  "class": "vanta-custom-footer",
+  "settings": [
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "VANTA Custom Footer"
+    }
+  ]
+}
+{% endschema %}

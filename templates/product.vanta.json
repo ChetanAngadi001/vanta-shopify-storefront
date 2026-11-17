@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "chetx-product-main",
+      "settings": {
+        "subtitle": "Utility built different. Designed to move beyond the ordinary.",
+        "fallback_description": "<p>Built for the different. A considered streetwear essential with an oversized fit and everyday utility.</p>",
+        "shipping_text": "<p>Add your actual shipping timelines and return policy here before launch.</p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

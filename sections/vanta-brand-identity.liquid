@@ -1,0 +1,319 @@
+
+{% liquid
+  assign brand_image = section.settings.brand_image
+%}
+
+<section
+  id="vanta-brand-{{ section.id }}"
+  class="vanta-brand"
+>
+  <div class="vanta-brand__inner">
+
+    <div class="vanta-brand__top">
+      <span>VANTA® — OUR IDENTITY</span>
+      <span>EST. {{ section.settings.established }}</span>
+    </div>
+
+    <div class="vanta-brand__layout">
+
+      <div class="vanta-brand__content">
+
+        <span class="vanta-brand__eyebrow">
+          {{ section.settings.eyebrow }}
+        </span>
+
+        <h2>
+          {{ section.settings.heading }}
+          <span>{{ section.settings.highlight }}</span>
+        </h2>
+
+        <p class="vanta-brand__description">
+          {{ section.settings.description }}
+        </p>
+
+        {% if section.settings.cta_label != blank and section.settings.cta_link != blank %}
+          <a
+            href="{{ section.settings.cta_link }}"
+            class="vanta-brand__link"
+          >
+            {{ section.settings.cta_label }}
+            <span>↗</span>
+          </a>
+        {% endif %}
+
+      </div>
+
+      <div class="vanta-brand__visual">
+
+        {% if brand_image != blank %}
+          {{
+            brand_image
+            | image_url: width: 1600
+            | image_tag:
+              loading: 'lazy',
+              class: 'vanta-brand__image',
+              alt: section.settings.image_alt
+          }}
+        {% else %}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'vanta-brand__placeholder' }}
+        {% endif %}
+
+        <div class="vanta-brand__image-label">
+          <span>VANTA®</span>
+          <span>DIFFERENT BY DESIGN.</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="vanta-brand__bottom">
+      <span>NOT MADE TO FIT IN.</span>
+      <span>WEAR YOUR DIFFERENCE.®</span>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #vanta-brand-{{ section.id }} {
+  background: #080808;
+  color: #fff;
+  padding: 55px 5% 90px;
+  overflow: hidden;
+}
+
+  #vanta-brand-{{ section.id }} .vanta-brand__inner {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #333;
+    color: #888;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 65px;
+    padding: 65px 0;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__content {
+    max-width: 650px;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__eyebrow {
+    color: #B7FF32;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 4px;
+  }
+
+  #vanta-brand-{{ section.id }} h2 {
+    color: #fff;
+    font-size: clamp(48px, 6vw, 88px);
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -4px;
+    text-transform: uppercase;
+    margin: 28px 0;
+  }
+
+  #vanta-brand-{{ section.id }} h2 span {
+    display: block;
+    color: #B7FF32;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__description {
+    max-width: 430px;
+    color: #999;
+    font-size: 15px;
+    line-height: 1.9;
+    margin: 30px 0;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    color: #fff;
+    border-bottom: 1px solid #B7FF32;
+    padding-bottom: 12px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    transition: color .25s ease;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__link span {
+    color: #B7FF32;
+    font-size: 17px;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__link:hover {
+    color: #B7FF32;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #191919;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__image,
+  #vanta-brand-{{ section.id }} .vanta-brand__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .8s ease;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__visual:hover .vanta-brand__image {
+    transform: scale(1.04);
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__image-label {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px #000;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    border-top: 1px solid #333;
+    padding-top: 22px;
+    color: #888;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+
+  #vanta-brand-{{ section.id }} .vanta-brand__bottom span:last-child {
+    color: #B7FF32;
+  }
+
+  @media (max-width: 749px) {
+    #vanta-brand-{{ section.id }} {
+      padding: 70px 5%;
+    }
+
+    #vanta-brand-{{ section.id }} .vanta-brand__layout {
+      grid-template-columns: 1fr;
+      gap: 35px;
+      padding: 45px 0;
+    }
+
+    #vanta-brand-{{ section.id }} h2 {
+      font-size: 54px;
+      letter-spacing: -2px;
+    }
+
+    #vanta-brand-{{ section.id }} .vanta-brand__visual {
+      aspect-ratio: 4 / 5;
+    }
+
+    #vanta-brand-{{ section.id }} .vanta-brand__bottom {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    #vanta-brand-{{ section.id }} .vanta-brand__top {
+      font-size: 8px;
+      letter-spacing: 1px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #vanta-brand-{{ section.id }} * {
+      transition: none !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "VANTA Brand Identity",
+  "settings": [
+    {
+      "type": "text",
+      "id": "established",
+      "label": "Established year",
+      "default": "2026"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Small label",
+      "default": "BEYOND THE ORDINARY"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main heading",
+      "default": "NOT MADE TO FIT IN."
+    },
+    {
+      "type": "text",
+      "id": "highlight",
+      "label": "Highlighted heading",
+      "default": "BUILT TO STAND APART."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Brand description",
+      "default": "We don't follow the uniform. We create our own. VANTA represents individuality, confidence and a different perspective."
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_image",
+      "label": "Brand campaign image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image description",
+      "default": "VANTA streetwear campaign"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button text",
+      "default": "DISCOVER THE BRAND"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "VANTA Brand Identity"
+    }
+  ]
+}
+{% endschema %}
