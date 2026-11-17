@@ -15,6 +15,31 @@
   <img src="https://img.shields.io/badge/PROJECT-PORTFOLIO-B7FF32?style=for-the-badge&labelColor=050505" />
 </p>
 
+
+<div align="center">
+  <h2>THE STOREFRONT.</h2>
+  <p>Looks good. Works too. Imagine that.</p>
+</div>
+
+<img src="screenshots/homepage-full.png" width="100%" alt="VANTA full homepage">
+
+<br>
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/product-detail.png" width="100%" alt="VANTA product detail page">
+      <p align="center"><strong>PRODUCT EXPERIENCE</strong></p>
+    </td>
+    <td width="50%">
+      <img src="screenshots/cart.png" width="100%" alt="VANTA shopping cart">
+      <p align="center"><strong>THE CART ACTUALLY WORKS</strong></p>
+    </td>
+  </tr>
+</table>
+
+
+
 ---
 
 ## THE IDEA
