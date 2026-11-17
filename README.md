@@ -106,6 +106,25 @@ Nothing too complicated. Just enough to make someone stop scrolling.
 - JSON Templates
 - Shopify Theme Architecture
 
+## THE TECHNICAL HIGHLIGHTS
+
+A few things behind the visuals. Because making it look good wasn't enough.
+
+### 1. CUSTOM SHOPIFY SECTIONS
+Built reusable homepage sections using Shopify Liquid, including the video hero, product showcase, brand identity and custom footer.
+
+### 2. INTERACTIVE PRODUCT CARDS
+Product cards use multiple product images to create a hover transition between the isolated product image and the lifestyle/model image.
+
+### 3. AJAX QUICK ADD TO CART
+Customers can select a product size directly from the homepage. The selected Shopify variant is added to the cart using AJAX, without navigating away from the page.
+
+### 4. NATIVE SHOPIFY INTEGRATION
+Product pages, collections, search, cart and checkout use Shopify's native functionality, keeping the storefront connected to real Shopify product data.
+
+### 5. RESPONSIVE DESIGN
+Custom styling adapts the storefront across desktop and mobile screens without losing the VANTA visual identity.
+
 No magic here. Just code, debugging, experiments and occasionally wondering why one tiny CSS change broke something completely unrelated.
 
 ## PROJECT STRUCTURE
@@ -185,7 +204,6 @@ I like building things that look good, work properly and make people curious abo
 If something can be improved, I'll probably spend another hour on it.
 
 [GitHub Profile](https://github.com/ChetanAngadi001)
-
 ---
 
 <p align="center">
