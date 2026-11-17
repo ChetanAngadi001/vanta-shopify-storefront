@@ -2,90 +2,88 @@
 ### THE STREETWEAR ARCHIVE.
 
 <p align="center">
-  <strong>NOT MADE TO FIT IN. BUILT TO STAND OUT.</strong>
+  <strong>Started with a hoodie. Somehow ended up building an entire Shopify theme.</strong>
 </p>
 
 <p align="center">
-  A cinematic streetwear storefront powered by Shopify Liquid.
+  A custom streetwear storefront built with Shopify Liquid, CSS and JavaScript.
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/PROJECT-VANTA-B7FF32?style=for-the-badge&labelColor=050505" />
-  <img src="https://img.shields.io/badge/PLATFORM-SHOPIFY-95BF47?style=for-the-badge&labelColor=050505" />
-  <img src="https://img.shields.io/badge/STATUS-SHOWCASE%20PROJECT-B7FF32?style=for-the-badge&labelColor=050505" />
+  <img src="https://img.shields.io/badge/SHOPIFY-LIQUID-95BF47?style=for-the-badge&labelColor=050505" />
+  <img src="https://img.shields.io/badge/DESIGN-DARK%20MODE-B7FF32?style=for-the-badge&labelColor=050505" />
+  <img src="https://img.shields.io/badge/PROJECT-PORTFOLIO-B7FF32?style=for-the-badge&labelColor=050505" />
 </p>
 
 ---
 
-## 01 / THE CONCEPT
+## THE IDEA
 
-VANTA is a bold, dark-themed streetwear e-commerce storefront concept designed to bring fashion and digital experience together.
+I wanted to build a streetwear website.
 
-Inspired by modern street culture, the storefront combines cinematic visuals, minimal layouts, strong typography and interactive product experiences.
+Not another default-looking online store with a product image, a price and a button.
 
-Every section is designed to feel intentional.
+I wanted something with a little attitude.
 
-**Less noise. More attitude.**
+So here we are. Black backgrounds, lime accents, cinematic visuals, custom product cards and a ridiculous amount of attention to small details.
 
-## 02 / THE EXPERIENCE
+Was it necessary to spend so much time adjusting animations and spacing?
 
-| Feature | Experience |
+Probably not.
+
+Did I do it anyway?
+
+Absolutely.
+
+## WHAT DID I BUILD?
+
+| Feature | Details |
 |---|---|
-| CINEMATIC HERO | Full-screen video-led introduction |
-| BRAND ANNOUNCEMENT | Animated lime ticker |
-| CUSTOM HEADER | Minimal navigation with interactive elements |
-| PRODUCT SHOWCASE | Dynamic Shopify collection integration |
-| PRODUCT HOVER | Dual-image product interaction |
-| SIZE SELECTOR | Variant selection and quick add to cart |
-| PRODUCT PAGE | Custom product detail experience |
-| SHOP | Collection browsing, filtering and sorting |
-| SEARCH | Shopify-powered product search |
-| CART | Cart drawer, quantity controls and removal |
-| BRAND IDENTITY | Custom editorial brand section |
-| FOOTER | Custom dark footer and newsletter section |
-| RESPONSIVE DESIGN | Mobile-friendly navigation and product grid |
+| Video Hero | Full-screen cinematic introduction |
+| Announcement Bar | Animated lime ticker |
+| Custom Header | Minimal navigation and clean interactions |
+| Product Showcase | Dynamic Shopify product collections |
+| Product Hover | Switches between isolated product and model images |
+| Quick Add to Cart | Select a size and add directly from the homepage |
+| Product Page | Custom product detail experience |
+| Shop & Collections | Product browsing, filtering and sorting |
+| Search | Shopify-powered product search |
+| Cart | Cart drawer, quantity controls and removal |
+| Brand Section | Custom VANTA identity |
+| Footer | Custom dark footer and newsletter |
+| Responsive Design | Made for desktop and mobile |
 
-## 03 / THE VISUAL LANGUAGE
+And yes, the buttons actually do things. I checked. Several times.
 
-**THE PALETTE**
+## THE LOOK
+
+I kept the visual direction simple.
 
 | Element | Colour |
 |---|---|
-| Primary Background | `#050505` |
+| Background | `#050505` |
 | Secondary Background | `#080808` |
-| Accent Lime | `#B7FF32` |
-| Primary Text | `#FFFFFF` |
+| Lime Accent | `#B7FF32` |
+| Main Text | `#FFFFFF` |
 | Secondary Text | `#888888` |
 
-**DESIGN PRINCIPLES**
+Bold typography. High contrast. Clean layouts. Smooth motion.
 
-- Dark, immersive visual direction
-- High-contrast typography
-- Minimal interface elements
-- Bold editorial layouts
-- Motion-driven interactions
-- Product-first presentation
+Nothing too complicated. Just enough to make someone stop scrolling.
 
-## 04 / BUILT WITH
-
-<p>
-  <img src="https://img.shields.io/badge/SHOPIFY-7AB55C?style=flat-square&logo=shopify&logoColor=white" />
-  <img src="https://img.shields.io/badge/LIQUID-67B7D1?style=flat-square" />
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" />
-  <img src="https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
-  <img src="https://img.shields.io/badge/GIT-F05032?style=flat-square&logo=git&logoColor=white" />
-</p>
+## THE TECH BEHIND IT
 
 - Shopify Liquid
-- Shopify Theme Architecture
 - HTML5
 - CSS3
 - JavaScript
-- JSON Templates
 - Shopify Ajax Cart
+- JSON Templates
+- Shopify Theme Architecture
 
-## 05 / PROJECT STRUCTURE
+No magic here. Just code, debugging, experiments and occasionally wondering why one tiny CSS change broke something completely unrelated.
+
+## PROJECT STRUCTURE
 
 ```text
 VANTA/
@@ -114,64 +112,61 @@ VANTA/
 └── README.md
 ```
 
-## 06 / RUN LOCALLY
+## WANT TO RUN IT?
 
-You will need:
+You'll need:
 
 - A Shopify development store
 - Shopify CLI
 - Git
 - Node.js
 
-**Clone the repository**
+Clone the repository:
 
 ```bash
 git clone https://github.com/ChetanAngadi001/vanta-shopify-storefront.git
 ```
 
-**Enter the project**
+Enter the project:
 
 ```bash
 cd vanta-shopify-storefront
 ```
 
-**Start the Shopify theme development server**
+Start the development server:
 
 ```bash
 shopify theme dev --store your-store.myshopify.com
 ```
 
-Replace `your-store.myshopify.com` with your own development store domain.
+Replace the example domain with your own Shopify development store.
 
-## 07 / PROJECT PURPOSE
+## BEFORE YOU THINK THIS IS A REAL BRAND...
 
-VANTA is a portfolio and showcase project created to explore custom Shopify theme development, storefront design and interactive shopping experiences.
+Small clarification: VANTA is currently a portfolio project.
 
-It demonstrates the implementation of custom Liquid sections, responsive styling, Shopify product data and native storefront functionality.
+No warehouse. No delivery department. No actual hoodie empire.
 
-This is a showcase project, not a claim of a commercially launched fashion brand.
+Just a developer experimenting with Shopify, building things, breaking things and hopefully getting better at it.
 
-## 08 / THE VISION
+## THE PERSON RESPONSIBLE
 
-Build experiences that people remember.
+**Chetan Angadi**
 
-Create interfaces that feel different.
+Developer. Electronics student. Professional overthinker of tiny design details.
 
-Make every detail count.
+I like building things that look good, work properly and make people curious about how they were made.
+
+If something can be improved, I'll probably spend another hour on it.
+
+[GitHub Profile](https://github.com/ChetanAngadi001)
+
+---
 
 <p align="center">
   <strong>V A N T A</strong>
   <br/>
   THE STREETWEAR ARCHIVE.
-  <br/>
-  <br/>
-  <strong>BUILT WITH INTENT. DESIGNED TO STAND OUT.</strong>
-</p>
-
----
-
-<p align="center">
-  Created by <strong>Chetan Angadi</strong>
-  <br/>
-  <a href="https://github.com/ChetanAngadi001">GITHUB PROFILE</a>
+  <br/><br/>
+  <em>Too much attention to detail. Not enough reasons to stop.</em>
 </p>
